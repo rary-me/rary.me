@@ -1,0 +1,101 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present all user data.
+ *
+ * This template is used when viewing a registered user's page,
+ * e.g., example.com/user/123. 123 being the user's ID.
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ *   print a subset such as 'content.field_example'. Fields attached to a user
+ *   such as 'user_picture' are available as 'content.user_picture'.
+ * - attributes: HTML attributes for the container element.
+ * - user: A Drupal User entity.
+ *
+ * @see template_preprocess_user()
+ *
+ * @ingroup themeable
+ */
+#}
+
+<article{{ attributes.addClass('profile') }}>
+
+{#
+<div class="profile_box">
+  <div class="col-md-3">
+    <figure>{{ content.user_picture }}</figure>
+  </div>
+  <div class="col-md-9">
+    <h2 class="content_author_name">{{ content.field_name }}</h2>
+    <div class="text-left post-summary">{{ content.field_profile }}</div>
+  </div>
+</div>
+#}
+
+{#
+<div class="button book_borrow">
+  <p class="book_would">あなたも本を登録してみませんか？</p>
+  <div type="button" class="btn btn-default btn-lg btn-block"><a href="/node/add/book">本を登録する</a></div>
+</div>
+#}
+
+
+
+
+<div class="profile_box">
+  <div class="profile_box_img">
+    {{ content.user_picture }}
+  </div>
+  <div class="profile_box_des">
+    <h2 class="content_author_name">{{ content.field_name }}</h2>
+    {#<div class="text-left post-summary">{{ content.field_profile }}</div>#}
+  </div>
+</div>
+
+
+
+{# //タブブロック  #}
+
+  <div class="tabs_box">
+    <input id="all" type="radio" name="tab_item" checked>
+      <label class="tab_item" for="all">プロフィール</label>
+    <input id="programming" type="radio" name="tab_item">
+      <label class="tab_item" for="programming">投稿した本</label>
+    <input id="design" type="radio" name="tab_item">
+      <label class="tab_item" for="design">借りた</label>
+
+    <div class="tab_content" id="all_content">
+      <div class="text-left post-summary">{{ content.field_profile }}</div>
+
+      {#
+      {% if content.field_book_comment['#items'].comment_count == 0 %}
+        <div class="nocomment">まだコメントはありません</div>
+      {% endif %}
+      {{ content.field_book_comment }}
+      #}
+    </div>
+
+    <div class="tab_content" id="programming_content">
+      {{ own_block }}
+      {#{{ fav_block }}#}
+      {#
+        <p>この本が読めるスポット:</p>
+        {% if content.field_book_spot.0 %}
+          <p>{{ content.field_book_spot }}</p>
+        {% else %}
+          <p>この本は貸出していません。</p>
+        {% endif %}
+        #}
+    </div>
+
+    <div class="tab_content" id="design_content">
+      {{ rent_block }}
+        {# {{ block_book }} #}
+
+
+    </div>
+  </div>
+
+
+</article>

@@ -1,0 +1,8 @@
+hello:
+  path: '/welcome'
+  defaults:
+    _title: 'Welcome Title'
+    _controller: '\Drupal\welcome\WelcomeController::content'
+  requirements:
+    _permission: 'access content'
+

@@ -1,0 +1,275 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\image\Entity\ImageStyle;
+
+
+/**
+ * @file
+ * welcome module.
+ */
+
+/**
+
+Implement of hook_form_alter
+
+*/
+//function welcome_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+//
+//  //get nid
+//  $current_path = \Drupal::service('path.current')->getPath();
+//  $path_args = explode('/', $current_path);
+//
+//  //node load
+//  //$node = node_load($path_args[2]);
+//
+//  //get uid
+//  $uid = \Drupal::currentUser()->id();
+//
+//
+//
+//  //本登録フォーム
+//  if($form_id == "node_book_form"){
+///*
+//    print "<pre>";
+//    var_dump($form['field_rental_user']);
+//    print "</pre>";
+//*/
+//    $form['field_rental_user']['#prefix'] = '<div class="field-none">';
+//    $form['field_rental_user']['#suffix'] = '</div>';
+//
+//  }
+//
+//  //ログインフォーム
+//  if($form_id == "user_login_form"){
+//    /*
+//    print "<pre>";
+//    var_dump($form_id);
+//    print "</pre>";
+//    */
+//
+//    //$form['name']['#attributes']['placeholder'] = t('User name');
+//    //$form['pass']['#attributes']['placeholder'] = t('Password');
+//    //$form['name']['#attributes']['class'][] = 'button glow button-primary expanded';
+//
+//    //ログイン画面より、通常のフィールド変更
+//    $form['name']['#prefix'] = '<div class="field-none">';
+//    $form['name']['#suffix'] = '</div>';
+//    $form['pass']['#prefix'] = '<div class="field-none">';
+//    $form['pass']['#suffix'] = '</div>';
+//    $form['actions']["submit"] = '<div class="field-none">';
+//    $form['actions']["submit"] = '</div>';
+//
+//    //unset($form['links']);
+//    //var_dump($form['links']);
+//    //$form['links']['#markup'] = 'aaaaa<div class="item-list"><ul><li class="first"><a href="/dev/user/register" title="Create a new user account.">Create new account</a></li></ul></div>';
+//
+//  }
+//
+//  //comment_comment_form
+//  //コメントの投稿のボタンを「保存」から「投稿」に変更
+//  if($form_id == "comment_comment_form"){
+//    $form['actions']["submit"]["#value"] = "コメントを投稿する";
+//
+//    //preview ボタン 削除　
+//    $form['actions']["preview"]['#prefix'] = '<div class="field-none">';
+//    $form['actions']["preview"]['#suffix'] = '</div>';
+//
+//  }
+//
+//
+//  //本履歴(借りた日)のコンテンツタイプの場合
+//  if($form_id == "node_history_form"){
+//
+//    //送信ボタン
+//    $form['actions']["submit"]["#value"] = "借りる";
+//
+//    //タイトル入力
+//    $form['title']['widget'][0]["value"]["#default_value"] = "【本：".$path_args[2]."】をレンタルしました";
+//    //タイトル　class追加し、非表示へ
+//    $form['title']['#prefix'] = '<div class="field-none">';
+//    $form['title']['#suffix'] = '</div>';
+//
+//    //本のnid セット
+//    $form['field_book']['widget'][0]['target_id']['#default_value'] = \Drupal\node\Entity\Node::load($path_args[2]);
+//    //本フィールドに　class追加し、非表示へ
+//    $form['field_book']['#prefix'] = '<div class="field-none">';
+//    $form['field_book']['#suffix'] = '</div>';
+//
+//    //返却日　非表示にする
+//    $form['field_return']['#prefix'] = '<div class="field-none">';
+//    $form['field_return']['#suffix'] = '</div>';
+//
+//    //submit 関数追加
+//    $form['actions']['submit']['#submit'][] = 'welcome_node_form_submit';
+//
+//    //本の投稿者セット
+//    //$form['field_user']['widget'][0]['target_id']['#default_value'] = 1;
+//  }
+//
+//  //本履歴(返却日)のコンテンツタイプの場合
+//  if($form_id == "node_rental_back_form"){
+//
+//    //送信ボタン
+//    $form['actions']["submit"]["#value"] = "返却する";
+//
+//    //タイトル入力
+//    $form['title']['widget'][0]["value"]["#default_value"] = "【本：".$path_args[2]."】が返却されました";
+//    //タイトル　class追加し、非表示へ
+//    $form['title']['#prefix'] = '<div class="field-none">';
+//    $form['title']['#suffix'] = '</div>';
+//
+//    //本のnid セット
+//    $form['field_book']['widget'][0]['target_id']['#default_value'] = \Drupal\node\Entity\Node::load($path_args[2]);
+//    //本フィールドに　class追加し、非表示へ
+//    $form['field_book']['#prefix'] = '<div class="field-none">';
+//    $form['field_book']['#suffix'] = '</div>';
+//
+//    //authorをレンタルした人にセット
+//    //レンタルした人のuidを取得
+//    $node = entity_load('node', $path_args[2]);
+//    if($path_args[2] != "add"){
+//      $field = $node->get('field_rental_user')->getValue();
+//      $own_uid = $field[0]["target_id"];
+//      $form['uid']["widget"][0]["target_id"]["#default_value"] = user_load($own_uid);
+//    }
+//    //preview ボタン　
+//    $form['actions']["preview"]['#prefix'] = '<div class="field-none">';
+//    $form['actions']["preview"]['#suffix'] = '</div>';
+//
+//    //submit 関数
+//    $form['actions']['submit']['#submit'][] = 'welcome_node_form_back_submit';
+//
+//  }
+//
+//
+//}
+
+/**
+
+welcome_form_alter　で定義したsubmit関数
+
+**/
+function welcome_node_form_submit($form, FormStateInterface $form_state) {
+  //get nid
+  $current_path = \Drupal::service('path.current')->getPath();
+  $path_args = explode('/', $current_path);
+
+  //get user id
+  $account = \Drupal::currentUser();
+  $uid = $account->id();
+  //var_dump($account->id());
+
+  //リダイレクト　→　しない
+
+  //dbアップデート
+  //コンテンツタイプ「本」の
+  //「field_rental」を「貸出中」にアップデート
+  //「field_rental_user」を「借りた人のuid」にアップデート
+  $node = \Drupal\node\Entity\Node::load($path_args[2]);
+  //$node->set("body", 'New body text');
+  $node->set("field_rental", '1');
+  $node->set("field_rental_user",$uid);
+  $node->save();
+
+
+  //メッセージ
+  //drupal_set_message($form_id);
+  //drupal_set_message('本をレンタルしました！nidは'.$path_args[2]."です");
+  drupal_set_message('本をレンタルしました！');
+
+}
+
+
+function welcome_node_form_back_submit($form, FormStateInterface $form_state) {
+  //get nid
+  $current_path = \Drupal::service('path.current')->getPath();
+  $path_args = explode('/', $current_path);
+
+  //get user id
+  $account = \Drupal::currentUser();
+  $uid = $account->id();
+  //var_dump($account->id());
+
+  //レンタルした人のuidを取得
+  //$node = entity_load('node', $path_args[2]);
+  //$field = $node->get('field_rental_user')->getValue();
+  //$own_uid = $field[0]["target_id"];
+  //drupal_set_message('本を返したのは'.$own_uid.'さんです。');
+
+  //dbアップデート
+  //コンテンツタイプ「本」の
+  //「field_rental」を「貸出中」にアップデート
+  $node = \Drupal\node\Entity\Node::load($path_args[2]);
+  $node->set("field_rental", '0');
+  $node->set("field_rental_user",NULL);
+  $node->save();
+
+
+
+  //メッセージ
+  //drupal_set_message($form_id);
+  //drupal_set_message('本を返却しました！nidは'.$path_args[2]."です");
+  drupal_set_message('本を返却しました！');
+
+  //TODO リダイレクト →　しなくて良い
+
+}
+
+
+/**
+開発中　画像アップロード時のexifを削除したい
+**/
+
+function welcome_file_presave(Drupal\file\FileInterface $file) {
+  //removeExif($file);
+}
+
+/**
+ * JPEGのEXIF情報を削除します。
+ * 元画像は削除した上で変換後のファイルを置き換えます。
+ * @param string $path 画像パス
+ * @return boolean
+ */
+function removeExif($path) {
+    $status = true;
+    list(, , $type) = getimagesize($path);
+    if($type === IMG_JPG) {
+        $gd = imagecreatefromjpeg($path);
+        $w = imagesx($gd);
+        $h = imagesy($gd);
+        $out = imagecreatetruecolor($w, $h);
+        $status = imagecopyresampled($out, $gd, 0, 0, 0, 0, $w, $h, $w, $h);
+        // 元画像を削除した上でファイルを再生成
+        $status = $status && unlink($path) && imagejpeg($out, $path, 100);
+        imagedestroy($gd);
+    }
+    return $status;
+}
+
+
+/**
+ * Implements hook_menu_alter().
+ */
+
+/*
+
+function welcome_link_alter(&$variables) {
+  $url = $variables['url'];
+  if ($url->isRouted() && $url->getRouteName() == 'user.page') {
+    $route_name = $url->getRouteName();
+    if ($route_name != 'user.page') {
+      return;
+    }
+    elseif ($variables['text'] == t('My account')) {
+      print "<pre>";
+      var_dump($variables);
+      print "</pre>";
+    }
+  }
+
+}
+
+*/
+
+

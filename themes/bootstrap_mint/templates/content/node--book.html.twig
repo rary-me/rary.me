@@ -1,0 +1,311 @@
+{#
+/**
+ * @file
+ * Bootstrap Mint's theme override to display a node.
+ *
+ * Available variables:
+ * - node: The node entity with limited access to object properties and methods.
+     Only "getter" methods (method names starting with "get", "has", or "is")
+     and a few common methods such as "id" and "label" are available. Calling
+     other methods (such as node.delete) will result in an exception.
+ * - label: The title of the node.
+ * - content: All node items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - author_picture: The node author user entity, rendered using the "compact"
+ *   view mode.
+ * - metadata: Metadata for this node.
+ * - date: Themed creation date field.
+ * - author_name: Themed author name field.
+ * - url: Direct URL of the current node.
+ * - display_submitted: Whether submission information should be displayed.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - node: The current template type (also known as a "theming hook").
+ *   - node--type-[type]: The current node type. For example, if the node is an
+ *     "Article" it would result in "node--type-article". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - node--view-mode-[view_mode]: The View Mode of the node; for example, a
+ *     teaser would result in: "node--view-mode-teaser", and
+ *     full: "node--view-mode-full".
+ *   The following are controlled through the node publishing options.
+ *   - node--promoted: Appears on nodes promoted to the front page.
+ *   - node--sticky: Appears on nodes ordered above other non-sticky nodes in
+ *     teaser listings.
+ *   - node--unpublished: Appears on unpublished nodes visible only to site
+ *     admins.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - content_attributes: Same as attributes, except applied to the main
+ *   content tag that appears in the template.
+ * - author_attributes: Same as attributes, except applied to the author of
+ *   the node tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - teaser: Flag for the teaser state. Will be true if view_mode is 'teaser'.
+ * - page: Flag for the full page state. Will be true if view_mode is 'full'.
+ * - readmore: Flag for more state. Will be true if the teaser content of the
+ *   node cannot hold the main body content.
+ * - logged_in: Flag for authenticated user status. Will be true when the
+ *   current user is a logged-in member.
+ * - is_admin: Flag for admin user status. Will be true when the current user
+ *   is an administrator.
+ *
+ * @see template_preprocess_node()
+ *
+ * @todo Remove the id attribute (or make it a class), because if that gets
+ *   rendered twice on a page this is invalid CSS for example: two lists
+ *   in different view modes.
+ */
+#}
+
+
+
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+
+{{ attach_library('classy/node') }}
+<article{{ attributes.addClass(classes) }}>
+
+<div class="timeline-block">
+  <div class="timeline_head">
+    <div class="unit-left">
+      {{ author_picture }}
+    </div>
+
+    <div class="unit-body side-body">
+      <div class="timeline-name">{{ user_name }}</div>
+      <div class="timeline-data">{{ date }}</div>
+    </div>
+  </div>
+
+
+  <div class="book_img">
+
+    {% if node.field_bookimage.getvalue|length == 1 %}
+      {{ content.field_bookimage }}
+    {% else %}
+
+      <div id="slider1" class="slider-pro">
+        <div class="sp-slides">
+          {{ content.field_bookimage }}
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
+
+  <div class="book_recomender_comment">
+    {{ content.body }}
+  </div>
+
+  <div class="book_tag">
+    <h3 class="book_tag_title">タグ</h3>
+    {{ content.field_tag }}
+  </div>
+
+
+
+  <div class ="button book_rental">
+    {% set selectedRental = content.field_rental['#items'].getString() %}
+    {% if selectedRental == 0 %}
+
+      {# ログインユーザのみ貸し出しボタン #}
+      {% if logged_in == 1 %}
+        <div class="rental_do">
+        <div class="popupModal1">
+          <input type="radio" name="modalPop" id="pop11" />
+          <label for="pop11"><p class="rental_link">この本を借りる</p></label>
+          <input type="radio" name="modalPop" id="pop12" />
+          <label for="pop12">CLOSE</label>
+          <input type="radio" name="modalPop" id="pop13" />
+          <label for="pop13">×</label>
+          <div class="modalPopup2">
+            <div class="modalPopup3">
+              <h2 class="modalTitle">この本を借りますか？</h2>
+              <div class="modalMain">
+                <p>この本を借りる場合は、下記をクリックしてください。</p>
+                {{ block_form }}
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+      {% else %}
+        <div class="popupModal1">
+          <label for="pop11"><p class="rental_link">※本を借りるにはログインが必要です。<a href="user">こちら</a>からログインしてください。</p></label>
+        </div>
+      {% endif %}
+
+
+    {% elseif selectedRental == 1 %}
+      <div class="rental_now">レンタル中です。</div>
+
+        {# 返却リンク #}
+    {#
+       todo
+       「投稿者本人」
+       or
+       「レンタルした人」
+       　の場合　
+       「返却ボタン」
+       をつける
+      #}
+      {# //ログインしている人：{{ uid }}<br>#}
+      {#{% set rental_uid = content.field_rental_user|striptags %}#}
+      {% set rental_uid %}
+      {{ content.field_rental_user }}
+      {% endset %}
+
+      {# //借りている人：{{ rental_uid|striptags }}<br> #}
+
+      {# //本の投稿者：{{ user_id }}<br> #}
+
+      {# 投稿者本人の場合 #}
+      {# todo
+        レンタルした人も返却できるようにする
+
+      #}
+      {% if uid == user_id %}
+        <div class="rental_back">
+          <div class="popupModal1">
+            <input type="radio" name="modalPop" id="pop11" />
+            <label for="pop11"><p class="rental_link">この本を返却する</p></label>
+            <input type="radio" name="modalPop" id="pop12" />
+            <label for="pop12">CLOSE</label>
+            <input type="radio" name="modalPop" id="pop13" />
+            <label for="pop13">×</label>
+            <div class="modalPopup2">
+              <div class="modalPopup3">
+                <h2 class="modalTitle">この本を返却しますか？</h2>
+                <div class="modalMain">
+                  <p>この本を返却する場合は、下記をクリックしてください。</p>
+                  {{ block_form_back }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="rental_back_des">※返却ボタンは本の投稿者のみ表示されます。</p>
+      {% endif %}
+
+{#
+      {% if uid == rental_uid|striptags %}
+        返却ボタンあり
+      {% else %}
+        返却ボタンなし
+      {% endif %}
+#}
+
+
+    {% else %}
+      <div class="rental_now">貸出していません。</div>
+    {% endif %}
+
+
+
+
+
+    {# コメント追加リンク/flagリンク #}
+    {# ログインユーザのみ表示 #}
+    {% if logged_in %}
+    <div class="tab_comment_link">
+      {{ content|without('field_amazon_link','field_bookimage','field_book_comment','field_book_spot','field_tag','body','field_rental','field_rental_user') }}
+    </div>
+    {% endif %}
+
+  </div>
+
+
+
+<p style="clear:both;"></p>
+
+
+</div>
+
+  <div class="tabs_box">
+    <input id="all" type="radio" name="tab_item" checked>
+      <label class="tab_item" for="all">コメント({{ content.field_book_comment['#items'].comment_count }}件)</label>
+    <input id="programming" type="radio" name="tab_item">
+      <label class="tab_item" for="programming">スポット</label>
+    <input id="design" type="radio" name="tab_item">
+      <label class="tab_item" for="design">レンタル履歴</label>
+
+    <div class="tab_content" id="all_content">
+      {% if content.field_book_comment['#items'].comment_count == 0 %}
+        <div class="nocomment">まだコメントはありません</div>
+      {% endif %}
+      {#{{ content.field_book_comment['#items'].comment_count }}#}
+      {{ content.field_book_comment }}
+    </div>
+
+    <div class="tab_content" id="programming_content">
+        <p>この本が読めるスポット:</p>
+        {% if content.field_book_spot.0 %}
+          <p>{{ content.field_book_spot }}</p>
+        {% else %}
+          <p>この本は貸出していません。</p>
+        {% endif %}
+    </div>
+
+    <div class="tab_content" id="design_content">
+        {{ block_book }}
+    </div>
+  </div>
+
+</article>
+
+
+
+{# ⬇️はcomment.html.twigに記載#}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="/themes/bootstrap_mint/js/jquery.sliderPro.min.js"></script>
+
+
+{#
+<script>
+  $(document).ready(function(){
+        $( '#slider1' ).sliderPro();
+  });
+</script>
+#}
+
+
+<script>
+  $("document").ready(function(){
+        $( "#slider1" ).sliderPro({
+          width:644,
+          height:644,
+          arrows: true,//左右の矢印を出す
+          buttons: true,//ナビゲーションボタンを出す
+          //aspectRatio: 1.5,//スライドのアスペクト比
+          //forceSize: 'fullWindow',//ウィンドウ内全画面表示*/
+          slideDistance:0,//スライド同士の距離
+          autoplay:false,
+          //responsive:true,
+          //autoScaleLayers:false,
+          /*
+          width: '100%',//横幅
+          arrows: true,//左右の矢印を出す
+          buttons: true,//ナビゲーションボタンを出す
+          aspectRatio: 1.5,//スライドのアスペクト比
+          forceSize: 'fullWindow',//ウィンドウ内全画面表示
+          slideDistance:0,//スライド同士の距離
+          */
+        });
+  });
+</script>
