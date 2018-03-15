@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "12e9ae157b4c872bb409a09176e0bbb3",
+    "content-hash": "24d86fda43fa5aba376fa5b44ac1876e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -688,15 +688,128 @@
             "time": "2014-09-09T13:34:57+00:00"
         },
         {
-            "name": "drupal/composerize",
-            "version": "dev-1.x",
+            "name": "drupal-composer/drupal-scaffold",
+            "version": "2.4.0",
             "source": {
                 "type": "git",
-                "url": "https://git.drupal.org/project/composerize",
-                "reference": "501bc8c7cf8d3704edb452536b7c1004deaa43cc"
+                "url": "https://github.com/drupal-composer/drupal-scaffold.git",
+                "reference": "745f0a2d4141fc83d3b42222beff43d66afb3dc6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/drupal-composer/drupal-scaffold/zipball/745f0a2d4141fc83d3b42222beff43d66afb3dc6",
+                "reference": "745f0a2d4141fc83d3b42222beff43d66afb3dc6",
+                "shasum": ""
             },
             "require": {
-                "drupal/core": "*"
+                "composer-plugin-api": "^1.0.0",
+                "composer/semver": "^1.4",
+                "php": ">=5.4.5"
+            },
+            "require-dev": {
+                "composer/composer": "dev-master",
+                "phpunit/phpunit": "^4.4.0"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "DrupalComposer\\DrupalScaffold\\Plugin",
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DrupalComposer\\DrupalScaffold\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Composer Plugin for updating the Drupal scaffold files when using drupal/core",
+            "time": "2017-12-08T22:53:11+00:00"
+        },
+        {
+            "name": "drupal/backup_migrate",
+            "version": "4.0.0-rc1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/backup_migrate",
+                "reference": "8.x-4.0-rc1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/backup_migrate-8.x-4.0-rc1.zip",
+                "reference": "8.x-4.0-rc1",
+                "shasum": "431939778a5e595a5b637a27130e4a9d2f1bae4e"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-4.x": "4.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-4.0-rc1",
+                    "datestamp": "1519215185",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Ronan Dowling",
+                    "homepage": "https://www.drupal.org/u/ronan",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "DamienMcKenna",
+                    "homepage": "https://www.drupal.org/user/108450"
+                },
+                {
+                    "name": "dgorton",
+                    "homepage": "https://www.drupal.org/user/19044"
+                },
+                {
+                    "name": "ikit-claw",
+                    "homepage": "https://www.drupal.org/user/3285813"
+                },
+                {
+                    "name": "ronan",
+                    "homepage": "https://www.drupal.org/user/72815"
+                }
+            ],
+            "description": "Backup and Migrate Drupal Module",
+            "homepage": "https://www.drupal.org/project/backup_migrate",
+            "support": {
+                "source": "http://cgit.drupalcode.org/backup_migrate",
+                "issues": "https://www.drupal.org/project/issues/backup_migrate"
+            }
+        },
+        {
+            "name": "drupal/blocktabs",
+            "version": "1.0.0-alpha6",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/blocktabs",
+                "reference": "8.x-1.0-alpha6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/blocktabs-8.x-1.0-alpha6.zip",
+                "reference": "8.x-1.0-alpha6",
+                "shasum": "99a4fcf775a1816d497e0ffa0ec661e53d6c8b25"
+            },
+            "require": {
+                "drupal/core": "~8.0"
             },
             "type": "drupal-module",
             "extra": {
@@ -704,8 +817,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.x-dev",
-                    "datestamp": "1518013684",
+                    "version": "8.x-1.0-alpha6",
+                    "datestamp": "1518343680",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -718,16 +831,64 @@
             ],
             "authors": [
                 {
-                    "name": "phenaproxima",
-                    "homepage": "https://www.drupal.org/user/205645"
+                    "name": "g089h515r806",
+                    "homepage": "https://www.drupal.org/user/174740"
                 }
             ],
-            "description": "Creates a composer.json from your Drupal site.",
-            "homepage": "https://www.drupal.org/project/composerize",
+            "description": "Block Tabs.",
+            "homepage": "https://www.drupal.org/project/blocktabs",
             "support": {
-                "source": "http://cgit.drupalcode.org/composerize"
+                "source": "http://cgit.drupalcode.org/blocktabs"
+            }
+        },
+        {
+            "name": "drupal/bootstrap_mint",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/bootstrap_mint",
+                "reference": "8.x-3.0"
             },
-            "time": "2018-02-07T14:24:40+00:00"
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/bootstrap_mint-8.x-3.0.zip",
+                "reference": "8.x-3.0",
+                "shasum": "e04e7b6f75daa1ae35b3f70b29275bcaacc8b07a"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-theme",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.x": "3.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-3.0",
+                    "datestamp": "1506684843",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Binu Varghese",
+                    "homepage": "https://www.drupal.org/u/binu-varghese",
+                    "email": "myinbox.binu@gmail.com",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "A mobile-first Drupal 8 theme built on the Bootstrap 3 framework.",
+            "homepage": "https://www.drupal.org/sandbox/binu_varghese/2752631",
+            "support": {
+                "source": "http://cgit.drupalcode.org/bootstrap_mint"
+            }
         },
         {
             "name": "drupal/core",
@@ -916,6 +1077,843 @@
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
             "time": "2018-02-20T21:35:13+00:00"
+        },
+        {
+            "name": "drupal/ctools",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/ctools",
+                "reference": "8.x-3.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/ctools-8.x-3.0.zip",
+                "reference": "8.x-3.0",
+                "shasum": "302e869ecd1e59fe55663673999fee2ccac5daa8"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.x": "3.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-3.0",
+                    "datestamp": "1493401742",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Kris Vanderwater (EclipseGc)",
+                    "homepage": "https://www.drupal.org/u/eclipsegc",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Jakob Perry (japerry)",
+                    "homepage": "https://www.drupal.org/u/japerry",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Tim Plunkett (tim.plunkett)",
+                    "homepage": "https://www.drupal.org/u/timplunkett",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "James Gilliland (neclimdul)",
+                    "homepage": "https://www.drupal.org/u/neclimdul",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Daniel Wehner (dawehner)",
+                    "homepage": "https://www.drupal.org/u/dawehner",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "joelpittet",
+                    "homepage": "https://www.drupal.org/user/160302"
+                },
+                {
+                    "name": "merlinofchaos",
+                    "homepage": "https://www.drupal.org/user/26979"
+                },
+                {
+                    "name": "neclimdul",
+                    "homepage": "https://www.drupal.org/user/48673"
+                },
+                {
+                    "name": "sdboyer",
+                    "homepage": "https://www.drupal.org/user/146719"
+                },
+                {
+                    "name": "sun",
+                    "homepage": "https://www.drupal.org/user/54136"
+                },
+                {
+                    "name": "tim.plunkett",
+                    "homepage": "https://www.drupal.org/user/241634"
+                }
+            ],
+            "description": "Provides a number of utility and helper APIs for Drupal developers and site builders.",
+            "homepage": "https://www.drupal.org/project/ctools",
+            "support": {
+                "source": "http://cgit.drupalcode.org/ctools",
+                "issues": "https://www.drupal.org/project/issues/ctools"
+            }
+        },
+        {
+            "name": "drupal/exif",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/exif",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/exif-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "a7c630dc9d90003646e6f5c77cc999f78b3f4cde"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1477243285",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "David Lesieur",
+                    "homepage": "https://www.drupal.org/user/17157"
+                },
+                {
+                    "name": "jphautin",
+                    "homepage": "https://www.drupal.org/user/534338"
+                },
+                {
+                    "name": "neclimdul",
+                    "homepage": "https://www.drupal.org/user/48673"
+                },
+                {
+                    "name": "pfournier",
+                    "homepage": "https://www.drupal.org/user/160468"
+                },
+                {
+                    "name": "rapsli",
+                    "homepage": "https://www.drupal.org/user/140802"
+                }
+            ],
+            "description": "Display image metadata (exif and iptc).",
+            "homepage": "https://www.drupal.org/project/exif",
+            "support": {
+                "source": "http://cgit.drupalcode.org/exif"
+            }
+        },
+        {
+            "name": "drupal/extra_image_field_classes",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/extra_image_field_classes",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/extra_image_field_classes-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "5c2c359b939ffc8c20925a18332d5a6ae4bdbe37"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1456055639",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "rahulbaisanemca",
+                    "homepage": "https://www.drupal.org/user/2822887"
+                }
+            ],
+            "description": "This module allows to add extra classes on image field",
+            "homepage": "https://www.drupal.org/project/extra_image_field_classes",
+            "support": {
+                "source": "http://cgit.drupalcode.org/extra_image_field_classes"
+            }
+        },
+        {
+            "name": "drupal/file_mdm",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/file_mdm",
+                "reference": "8.x-1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/file_mdm-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "7f354aec6f89e3141c2aa1fb3747ad5d4578c13f"
+            },
+            "require": {
+                "drupal/core": "~8.0",
+                "lsolesen/pel": "0.9.6",
+                "phenx/php-font-lib": "0.5",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "drupal/image_effects": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.1",
+                    "datestamp": "1488273785",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "mondrake",
+                    "homepage": "https://www.drupal.org/user/1307444"
+                }
+            ],
+            "description": "Provides a service to manage file metadata.",
+            "homepage": "https://www.drupal.org/project/file_mdm",
+            "support": {
+                "source": "http://cgit.drupalcode.org/file_mdm"
+            }
+        },
+        {
+            "name": "drupal/flag",
+            "version": "4.0.0-alpha2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/flag",
+                "reference": "8.x-4.0-alpha2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/flag-8.x-4.0-alpha2.zip",
+                "reference": "8.x-4.0-alpha2",
+                "shasum": "e9ead06aadc9d26364b9ad1225354b0c47d5ce02"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-4.x": "4.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-4.0-alpha2",
+                    "datestamp": "1494517385",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "fago",
+                    "homepage": "https://www.drupal.org/user/16747"
+                },
+                {
+                    "name": "fubhy",
+                    "homepage": "https://www.drupal.org/user/761344"
+                },
+                {
+                    "name": "joachim",
+                    "homepage": "https://www.drupal.org/user/107701"
+                },
+                {
+                    "name": "merlinofchaos",
+                    "homepage": "https://www.drupal.org/user/26979"
+                },
+                {
+                    "name": "mooffie",
+                    "homepage": "https://www.drupal.org/user/78454"
+                },
+                {
+                    "name": "quicksketch",
+                    "homepage": "https://www.drupal.org/user/35821"
+                },
+                {
+                    "name": "shabana.navas",
+                    "homepage": "https://www.drupal.org/user/1311398"
+                },
+                {
+                    "name": "socketwench",
+                    "homepage": "https://www.drupal.org/user/65793"
+                }
+            ],
+            "description": "Create customized flags that users can set on entities.",
+            "homepage": "https://www.drupal.org/project/flag",
+            "support": {
+                "source": "http://cgit.drupalcode.org/flag"
+            }
+        },
+        {
+            "name": "drupal/formblock",
+            "version": "1.0.0-beta9",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/formblock",
+                "reference": "8.x-1.0-beta9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/formblock-8.x-1.0-beta9.zip",
+                "reference": "8.x-1.0-beta9",
+                "shasum": "b9e06977dbb5cfc77a40fa97ce968300e342dbbf"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta9",
+                    "datestamp": "1471552142",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "chx",
+                    "homepage": "https://www.drupal.org/user/9446"
+                },
+                {
+                    "name": "mikey_p",
+                    "homepage": "https://www.drupal.org/user/62496"
+                },
+                {
+                    "name": "nedjo",
+                    "homepage": "https://www.drupal.org/user/4481"
+                }
+            ],
+            "description": "Enables the presentation of node creation forms in blocks. This is particularly useful for including forms on panels.",
+            "homepage": "https://www.drupal.org/project/formblock",
+            "support": {
+                "source": "http://cgit.drupalcode.org/formblock"
+            }
+        },
+        {
+            "name": "drupal/google_analytics",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/google_analytics",
+                "reference": "8.x-2.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/google_analytics-8.x-2.2.zip",
+                "reference": "8.x-2.2",
+                "shasum": "15cd0642ad99f3776a46b702e5012713405a0733"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "require-dev": {
+                "drupal/php": "*",
+                "drupal/token": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.2",
+                    "datestamp": "1506372845",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "hass",
+                    "homepage": "https://www.drupal.org/u/hass"
+                },
+                {
+                    "name": "See other contributors",
+                    "homepage": "https://www.drupal.org/node/49388/committers"
+                }
+            ],
+            "description": "Allows your site to be tracked by Google Analytics by adding a Javascript tracking code to every page.",
+            "homepage": "https://www.drupal.org/project/google_analytics",
+            "support": {
+                "source": "http://git.drupal.org/project/google_analytics.git",
+                "issues": "https://www.drupal.org/project/issues/google_analytics"
+            }
+        },
+        {
+            "name": "drupal/hide_preview",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/hide_preview",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/hide_preview-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "552f5c4e421befede84a0a92f7d02a546daca3c1"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1492254542",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "timothee.moulin",
+                    "homepage": "https://www.drupal.org/user/2294128"
+                }
+            ],
+            "description": "Hides the preview button on the contact form.",
+            "homepage": "https://www.drupal.org/project/hide_preview",
+            "support": {
+                "source": "http://cgit.drupalcode.org/hide_preview"
+            }
+        },
+        {
+            "name": "drupal/imagefield_slideshow",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/imagefield_slideshow",
+                "reference": "8.x-1.6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/imagefield_slideshow-8.x-1.6.zip",
+                "reference": "8.x-1.6",
+                "shasum": "1f613ccefe83343c634c3fb0e6626d391562872c"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.6",
+                    "datestamp": "1508910734",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Karthik Kumar D K (heykarthikwithu)",
+                    "homepage": "https://www.drupal.org/u/heykarthikwithu"
+                },
+                {
+                    "name": "xaiwant",
+                    "homepage": "https://www.drupal.org/user/2598494"
+                }
+            ],
+            "description": "Creates a field formatter for image field, for which that particular field will be rendered as a basic slider.",
+            "homepage": "https://www.drupal.org/project/imagefield_slideshow",
+            "keywords": [
+                "image field",
+                "imagefield slideshow",
+                "slideshow"
+            ],
+            "support": {
+                "source": "https://cgit.drupalcode.org/imagefield_slideshow",
+                "issues": "https://www.drupal.org/project/issues/imagefield_slideshow"
+            }
+        },
+        {
+            "name": "drupal/menu_link_modal",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/menu_link_modal",
+                "reference": "8.x-1.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/menu_link_modal-8.x-1.3.zip",
+                "reference": "8.x-1.3",
+                "shasum": "fa1c1e1177d0f78024c82c46e86717bc732a1dfa"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.3",
+                    "datestamp": "1506600543",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Mitesh Patel",
+                    "homepage": "https://www.drupal.org/u/miteshmap",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "vbouchet",
+                    "homepage": "https://www.drupal.org/user/1671428"
+                }
+            ],
+            "description": "Allow you to open internal menu links in modal.",
+            "homepage": "http://drupal.org/project/menu_link_modal",
+            "support": {
+                "source": "http://cgit.drupalcode.org/menu_link_modal",
+                "issues": "https://www.drupal.org/project/issues/menu_link_modal"
+            }
+        },
+        {
+            "name": "drupal/pathauto",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/pathauto",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/pathauto-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "4c82a5689a18421c8c73fcc8be7b333bb21ae02a"
+            },
+            "require": {
+                "drupal/core": "*",
+                "drupal/ctools": "*",
+                "drupal/token": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1520092685",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Berdir",
+                    "homepage": "https://www.drupal.org/user/214652"
+                },
+                {
+                    "name": "Dave Reid",
+                    "homepage": "https://www.drupal.org/user/53892"
+                },
+                {
+                    "name": "Freso",
+                    "homepage": "https://www.drupal.org/user/27504"
+                },
+                {
+                    "name": "greggles",
+                    "homepage": "https://www.drupal.org/user/36762"
+                }
+            ],
+            "description": "Provides a mechanism for modules to automatically generate aliases for the content they manage.",
+            "homepage": "https://www.drupal.org/project/pathauto",
+            "support": {
+                "source": "http://cgit.drupalcode.org/pathauto"
+            }
+        },
+        {
+            "name": "drupal/responsive_slideshow",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/responsive_slideshow",
+                "reference": "8.x-1.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/responsive_slideshow-8.x-1.2.zip",
+                "reference": "8.x-1.2",
+                "shasum": "dccf4640859bf597ff52263419963c161d41da30"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.2",
+                    "datestamp": "1485251583",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Aswathy Ajish",
+                    "homepage": "https://www.drupal.org/user/2584696"
+                },
+                {
+                    "name": "krishnag",
+                    "homepage": "https://www.drupal.org/user/2537120"
+                },
+                {
+                    "name": "sajiniantony",
+                    "homepage": "https://www.drupal.org/user/2603884"
+                },
+                {
+                    "name": "santhoshkk",
+                    "homepage": "https://www.drupal.org/user/2217056"
+                },
+                {
+                    "name": "vineethaw",
+                    "homepage": "https://www.drupal.org/user/2602554"
+                }
+            ],
+            "description": "Module for getting responsive slideshow in bootstrap theme.",
+            "homepage": "https://www.drupal.org/project/responsive_slideshow",
+            "support": {
+                "source": "http://cgit.drupalcode.org/responsive_slideshow"
+            }
+        },
+        {
+            "name": "drupal/social_login",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/social-login",
+                "reference": "8.x-1.6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/social_login-8.x-1.6.zip",
+                "reference": "8.x-1.6",
+                "shasum": "8ff2f8c5a14f18349ea8d846c6887b9d189eff4b"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.6",
+                    "datestamp": "1500023043",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "ClaudeSchlesser",
+                    "homepage": "https://www.drupal.org/user/1824044"
+                }
+            ],
+            "description": "Allows your users to register and login with 30+ social networks like for example Twitter, Facebook, Paypal, LinkedIn, Instagram, Vimeo, Google and Yahoo",
+            "homepage": "https://www.drupal.org/project/social_login",
+            "support": {
+                "source": "http://cgit.drupalcode.org/social_login"
+            }
+        },
+        {
+            "name": "drupal/token",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/token",
+                "reference": "8.x-1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/token-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "f11042a76bec028b0a86dc33cf6daa19eb55d545"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.1",
+                    "datestamp": "1513810384",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Berdir",
+                    "homepage": "https://www.drupal.org/user/214652"
+                },
+                {
+                    "name": "Dave Reid",
+                    "homepage": "https://www.drupal.org/user/53892"
+                },
+                {
+                    "name": "eaton",
+                    "homepage": "https://www.drupal.org/user/16496"
+                },
+                {
+                    "name": "fago",
+                    "homepage": "https://www.drupal.org/user/16747"
+                },
+                {
+                    "name": "greggles",
+                    "homepage": "https://www.drupal.org/user/36762"
+                },
+                {
+                    "name": "mikeryan",
+                    "homepage": "https://www.drupal.org/user/4420"
+                }
+            ],
+            "description": "Provides a user interface for the Token API and some missing core tokens.",
+            "homepage": "https://www.drupal.org/project/token",
+            "support": {
+                "source": "http://cgit.drupalcode.org/token"
+            }
         },
         {
             "name": "easyrdf/easyrdf",
@@ -1213,6 +2211,61 @@
             "time": "2017-03-20T17:10:46+00:00"
         },
         {
+            "name": "lsolesen/pel",
+            "version": "0.9.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lsolesen/pel.git",
+                "reference": "c9e3919f5db3b85c3c422d4f8d448dbcb2a87a23"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lsolesen/pel/zipball/c9e3919f5db3b85c3c422d4f8d448dbcb2a87a23",
+                "reference": "c9e3919f5db3b85c3c422d4f8d448dbcb2a87a23",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.0.0"
+            },
+            "require-dev": {
+                "ext-gd": "*",
+                "phpunit/phpunit": "5.7.*",
+                "satooshi/php-coveralls": "1.0.*",
+                "squizlabs/php_codesniffer": "3.0.0RC3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "lsolesen\\pel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Lars Olesen",
+                    "email": "lars@intraface.dk",
+                    "homepage": "http://intraface.dk",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Martin Geisler",
+                    "email": "martin@geisler.net",
+                    "homepage": "http://geisler.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP Exif Library. A library for reading and writing Exif headers in JPEG and TIFF images using PHP.",
+            "homepage": "http://lsolesen.github.com/pel/",
+            "keywords": [
+                "exif",
+                "image"
+            ],
+            "time": "2017-02-03T11:58:58+00:00"
+        },
+        {
             "name": "masterminds/html5",
             "version": "2.3.0",
             "source": {
@@ -1366,6 +2419,43 @@
                 "random"
             ],
             "time": "2017-09-27T21:40:39+00:00"
+        },
+        {
+            "name": "phenx/php-font-lib",
+            "version": "0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PhenX/php-font-lib.git",
+                "reference": "19ad2bebc35be028fcc0221025fcbf3d436a3962"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PhenX/php-font-lib/zipball/19ad2bebc35be028fcc0221025fcbf3d436a3962",
+                "reference": "19ad2bebc35be028fcc0221025fcbf3d436a3962",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "FontLib\\": "src/FontLib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Ménager",
+                    "email": "fabien.menager@gmail.com"
+                }
+            ],
+            "description": "A library to read, parse, export and make subsets of different types of font files.",
+            "homepage": "https://github.com/PhenX/php-font-lib",
+            "time": "2017-02-11T10:58:43+00:00"
         },
         {
             "name": "psr/http-message",
@@ -2644,6 +3734,28 @@
             "time": "2018-03-03T16:21:29+00:00"
         },
         {
+            "name": "webflo/drupal-core-strict",
+            "version": "8.0.0-beta15",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webflo/drupal-core-strict.git",
+                "reference": "1eb044b722ebe44bc6af86a03888415d7f31c057"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webflo/drupal-core-strict/zipball/1eb044b722ebe44bc6af86a03888415d7f31c057",
+                "reference": "1eb044b722ebe44bc6af86a03888415d7f31c057",
+                "shasum": ""
+            },
+            "type": "metapackage",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Locked core dependencies",
+            "time": "2018-01-30T18:48:19+00:00"
+        },
+        {
             "name": "wikimedia/composer-merge-plugin",
             "version": "v1.4.1",
             "source": {
@@ -2898,9 +4010,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "drupal/composerize": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
